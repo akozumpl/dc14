@@ -17,8 +17,52 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Hello and welcome</h1>
+    <div class="container">
+    <h1>Intro, Plan</h1>
 
+
+
+    <h2>Goal: Implement the builddep plugin</h2>
+
+    <h1>Setup</h1>
+    <h2>Prerequisites:</h2>
+    <ul>
+      <li>Fedora 20</li>
+      <li>Git</li>
+      <li>Editor of your choice</li>
+    </ul>
+    OR:
+    <ul>
+      <li> Get my USB Pen with a ready-to-go KVM image.</li>
+    </ul>
+
+    <h2>Setting up:</h2>
+    <ul>
+      <li>Add the repo with latest & greatest:
+	<pre>
+	  [dnf-ci]
+	  name = DNF Continuous Integration
+	  enabled = 1
+	  baseurl= http://jenkins.cloud.fedoraproject.org/job/DNF/lastSuccessfulBuild/artifact/fedora-20-x86_64-build/
+	  gpgcheck = 0
+	</pre>
+      </li>
+      <li><code>sudo yum install dnf</code></li>
+      <li><code>git clone https://github.com/akozumpl/dnf-plugins-core.git</code></li>
+      <li>Point DNF to the development version of plugins, edit <code>/etc/dnf/dnf.conf</code> and add:
+	<code>pluginpath=&lt;your dnf-plugins-core checkout path&gt;/plugins</code>
+      </li>
+      <li>If running <code>dnf list installed kernel</code> should mention the plugins in the logs <code>/var/log/dnf.log</code> we're done with the setup.
+    </ul>
+
+    <h2>Using the virt image</h2>
+    <code>root</code> and <code>conf</code> users, password for both is <code>1414</code>.
+
+    <h1>Hacking</h1>
+    <p>Let's use the <a href="http://kojipkgs.fedoraproject.org//packages/librepo/1.5.2/2.fc20/src/librepo-1.5.2-2.fc20.src.rpm">librepo .src.rpm for testing this.</a></p>
+
+    <h1>Wrap Up</h1>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
