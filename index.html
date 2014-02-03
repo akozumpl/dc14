@@ -29,8 +29,20 @@
       <div class="tab-content">
 <!-- PANE -->
 	<div class="tab-pane active" id="intro">
-	  <h1>Intro, Plan</h1>
-	  <h2>Goal: Implement the builddep plugin</h2>
+	  <h1>Introduction, Plan for the Lab</h1>
+	  <ul>
+	    <li>Where are we since the last time.</li>
+	    <li>How the API is maintained and extended.</li>
+	    <li><p>What you can do with the API:</p>
+	      <ul>
+		<li>Writing extensions.</li>
+		<li>Two main mechanisms plugins interact with DNF: hooks and custom commands.</li>
+		<li>Example plugins to be built (with RFE bugzillas): download, builddep, fssnapshot, autoremove, repomanage, priorities, debuginfo-install, debuginfo-autoupdate, installing systemd machine containers, local.</li>
+	      </ul>
+	    </li>
+	    <li>The goal of this session: see how simple it is to build DNF plugins. If you know what you want to be doing here, do it, I'll help. I will guide the rest in writing the builddep plugin.</li>
+	  </ul>
+	  <button type="button" class="btn">Next.</button>
 	</div>
 
 <!-- PANE -->
@@ -44,10 +56,10 @@
 	  </ul>
 	  OR:
 	  <ul>
-	    <li> Get my USB Pen with a ready-to-go KVM image.</li>
+	    <li> Get my USB pen with a ready-to-go KVM image.</li>
 	  </ul>
 
-	  <h2>Setting up:</h2>
+	  <h2>Setting up the environment on F20:</h2>
 	  <ul>
 	    <li>Add the repo with latest & greatest:
 	      <pre>
@@ -63,24 +75,45 @@ gpgcheck = 0
 	    <li>Point DNF to the development version of plugins, edit <code>/etc/dnf/dnf.conf</code> and add:
 	      <code>pluginpath=&lt;your dnf-plugins-core checkout path&gt;/plugins</code>
 	    </li>
-	    <li>If running <code>dnf list installed kernel</code> should mention the plugins in the logs <code>/var/log/dnf.log</code> we're done with the setup.
+	    <li>If running <code>dnf list installed kernel</code> mentions the plugins in the logs <code>/var/log/dnf.log</code> we're done with the setup.
 	  </ul>
 
 	  <h2>Using the virt image</h2>
-	  <code>root</code> and <code>conf</code> users, password for both is <code>1414</code>.
+	  <p><code>root</code> and <code>conf</code> users, password for both is <code>1414</code>.</p>
 
+	  <button type="button" class="btn">Next.</button>
 
 	</div>
 
 <!-- PANE -->
         <div class="tab-pane" id="hacking">
 	  <h1>Hacking</h1>
-	  <p>Let's use the <a href="http://kojipkgs.fedoraproject.org//packages/librepo/1.5.2/2.fc20/src/librepo-1.5.2-2.fc20.src.rpm">librepo .src.rpm for testing this.</a></p>
+	  <p>The idea of the builddep plugin:</p>
+	  <ol>
+	    <li>Register a new <code>dnf builddep</code> command.</li>
+	    <li>Ask RPM what dependencies each of the arguments has.</li>
+	    <li>Add them to DNF transaction.</li>
+	    <li>Let DNF do the rest.</li>
+	  </ol>
+	  Useful links:
+	  <ul>
+	    <li><a href="http://akozumpl.github.io/dnf/api.html">DNF API Documentation</a></li>
+	    <li><a href="http://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/ch-rpm-programming-python.html">RPM API Guide</a></li>
+	    <li><a href="http://rpm.org/gitweb?p=rpm.git;a=tree;f=python;h=07e798d550c4bb8fdb61f820f69c21f292f7efee;hb=HEAD"><code>/python</code> in the RPM source tree.</a></li>
+	    <li>Source code of <a href="http://yum.baseurl.org/gitweb?p=yum-utils.git;a=blob;f=yum-builddep.py;h=216066ef35120a1c4ba929b02fb8dfea4a8f9fd1;hb=HEAD">the original Yum plugin</a></li>
+	    <li><a href="http://kojipkgs.fedoraproject.org//packages/librepo/1.5.2/2.fc20/src/librepo-1.5.2-2.fc20.src.rpm">librepo .src.rpm</a> to test this.</p>
+	  </ul>
+	  <button type="button" class="btn">Next.</button>
 	</div>
 
 <!-- PANE -->
         <div class="tab-pane" id="wrapup">
 	  <h1>Wrap Up</h1>
+	  <ul>
+	    <li>Getting help</li>
+	    <li><p>Getting patches submitted.</p>
+	    <p><a href="https://github.com/akozumpl/dnf/wiki/Hacking">some guidelines<a></p></li>
+	  </ul>
         </div>
       </div>
 
