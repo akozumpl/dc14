@@ -120,7 +120,21 @@ gpgcheck = 0
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://raw.github.com/jeresig/jquery.hotkeys/master/jquery.hotkeys.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+$('button').click(function (e) {
+  e.preventDefault();
+  var next_li = $('.nav-tabs .active + li');
+  next_li.children('a').first().tab('show');
+})
+
+$(document).ready( function($) {
+  $(document).bind('keydown', 'n', function() {
+    $('.active button').click();
+});
+})
+    </script>
   </body>
 </html>
