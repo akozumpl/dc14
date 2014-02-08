@@ -29,18 +29,26 @@
       <div class="tab-content">
 <!-- PANE -->
 	<div class="tab-pane active" id="intro">
+	  <!-- hello - DNF API - DNF is a package manager set to replace Yum in Fedora 22 - about me and the team - 90 minutes - how I'll show the code -->
 	  <h1>Introduction, Plan for the Lab</h1>
 	  <ul>
-	    <li>Where are we since the last time.</li>
+	    <li>Aleš Kozumplík, &lt;ales@redhat.com&gt;</li>
+	    <li>Where are we since the last time.</li> <!-- basic comps support, some Anaconda integration, parallel downloads, py3 compat, dropped urlgrabber deps, delta rpm, undoing transactions, we have API, plugins support,tons of bugs -->
 	    <li>How the API is maintained and extended.</li>
 	    <li><p>What you can do with the API:</p>
 	      <ul>
-		<li>Writing extensions.</li>
+		<li>Writing extensions.</li> <!-- what is anaconda doing, it doesn't use the cli -->
 		<li>Two main mechanisms plugins interact with DNF: hooks and custom commands.</li>
 		<li>Example plugins to be built (with RFE bugzillas): download, builddep, fssnapshot, autoremove, repomanage, priorities, debuginfo-install, debuginfo-autoupdate, installing systemd machine containers, local.</li>
+		<!-- what goes in the core package and what goes in the plugins: things we are not yet convinced should be core; some of them however prove to be useful.;
+
+		     also: external dependencies; if it gets out of hand we might even provide a package per plugin;
+
+		  -->
 	      </ul>
 	    </li>
 	    <li>The goal of this session: see how simple it is to build DNF plugins. If you know what you want to be doing here, do it, I'll help. I will guide the rest in writing the builddep plugin.</li>
+	    <li>Just ask questions any time.</li>
 	  </ul>
 	  <button type="button" class="btn">Next.</button>
 	</div>
@@ -88,12 +96,14 @@ gpgcheck = 0
 <!-- PANE -->
         <div class="tab-pane" id="hacking">
 	  <h1>Hacking</h1>
-	  <p>The idea of the builddep plugin:</p>
+	  <p>Building a (builddep) plugin:</p>
 	  <ol>
+	    <li>Check out the yum/yum-utils implementation if there is one</li>
 	    <li>Register a new <code>dnf builddep</code> command.</li>
 	    <li>Ask RPM what dependencies each of the arguments has.</li>
 	    <li>Add them to DNF transaction.</li>
 	    <li>Let DNF do the rest.</li>
+	    <li>Do not forget to write a unit test.</li>
 	  </ol>
 	  Useful links:
 	  <ul>
@@ -110,9 +120,10 @@ gpgcheck = 0
         <div class="tab-pane" id="wrapup">
 	  <h1>Wrap Up</h1>
 	  <ul>
-	    <li>Submit bugzillas for the missing API features.</li>
+	    <li>Writing plugins is easy.</li>
 	    <li>Try to read & debug first, then ask at #yum.</li>
-	    <li>Getting patches submitted.
+	    <li>Submit bugzillas for the missing API features.</li>
+	    <li>Getting patches submitted:
 	      <ul>
 		<li><a href="https://github.com/akozumpl/dnf/wiki/Hacking">some guidelines</a></li>
 		<li>Plugins can be packaged separately or packaged in dnf-plugins-core. We want your plugins in dnf-plugins-core but there are rules.</li></ul></li>
